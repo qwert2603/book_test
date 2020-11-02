@@ -87,12 +87,16 @@ class _SaveBookDialogState extends State<_SaveBookDialog> {
       year: yearController.text,
     );
     return AlertDialog(
-      title: Text(widget.book != null ? "Редактирование книги" : "Новая книга"),
+      title: Text(
+        widget.book != null ? "Редактирование книги" : "Новая книга",
+        key: ValueKey("dialog_title"),
+      ),
       content: Scrollbar(
         child: SingleChildScrollView(
           child: Column(
             children: [
               TextFormField(
+                key: ValueKey("author"),
                 controller: authorController,
                 decoration: InputDecoration(
                   hintText: "Автор",
@@ -110,6 +114,7 @@ class _SaveBookDialogState extends State<_SaveBookDialog> {
               ),
               const SizedBox(height: 8.0),
               TextFormField(
+                key: ValueKey("title"),
                 controller: titleController,
                 decoration: InputDecoration(
                   hintText: "Название",
@@ -128,6 +133,7 @@ class _SaveBookDialogState extends State<_SaveBookDialog> {
               ),
               const SizedBox(height: 8.0),
               TextFormField(
+                key: ValueKey("year"),
                 controller: yearController,
                 decoration: InputDecoration(
                   hintText: "Год",
@@ -150,10 +156,12 @@ class _SaveBookDialogState extends State<_SaveBookDialog> {
       ),
       actions: [
         TextButton(
+          key: ValueKey("cancel"),
           onPressed: () => Navigator.pop(context, null),
           child: Text("Отмена"),
         ),
         TextButton(
+          key: ValueKey("save"),
           onPressed: creatingBook.isValid()
               ? () => Navigator.pop(
                     context,

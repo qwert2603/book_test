@@ -22,12 +22,16 @@ class BooksListScreen extends StatelessWidget {
           }
           final booksList = snapshot.data;
           return ListView.builder(
-            itemBuilder: (context, i) => BookItem(book: booksList[i]),
+            itemBuilder: (context, i) => BookItem(
+              book: booksList[i],
+              index: i,
+            ),
             itemCount: booksList.length,
           );
         },
       ),
       floatingActionButton: FloatingActionButton(
+        key: ValueKey("create_book"),
         onPressed: () async {
           final newBook = await askToCreateBook(context);
           if (newBook != null) {
@@ -42,17 +46,25 @@ class BooksListScreen extends StatelessWidget {
 
 class BookItem extends StatelessWidget {
   final Book book;
+  final int index;
 
   BookItem({
     @required this.book,
+    @required this.index,
     Key key,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      title: Text("${book.title} (${book.year})"),
-      subtitle: Text(book.author),
+      title: Text(
+        "${book.title} (${book.year})",
+        key: ValueKey("book_title_$index"),
+      ),
+      subtitle: Text(
+        book.author,
+        key: ValueKey("book_subtitle_$index"),
+      ),
       onTap: () => Navigator.pushNamed(
         context,
         Routes.bookDetails,

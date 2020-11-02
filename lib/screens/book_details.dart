@@ -40,16 +40,19 @@ class BookDetailsScreen extends StatelessWidget {
               children: [
                 Text(
                   book.title,
+                  key: ValueKey("title"),
                   style: textTheme.headline4,
                 ),
                 const SizedBox(height: 8.0),
                 Text(
                   book.year.toString(),
+                  key: ValueKey("year"),
                   style: TextStyle(fontSize: 16),
                 ),
                 const SizedBox(height: 8.0),
                 Text(
                   book.author,
+                  key: ValueKey("author"),
                   style: TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
@@ -59,6 +62,7 @@ class BookDetailsScreen extends StatelessWidget {
                 Row(
                   children: [
                     TextButton(
+                      key: ValueKey("remove"),
                       onPressed: () async {
                         final confirmed = await askToRemoveBook(context, book);
                         if (confirmed == true) {
@@ -70,6 +74,7 @@ class BookDetailsScreen extends StatelessWidget {
                     ),
                     const SizedBox(width: 24.0),
                     TextButton(
+                      key: ValueKey("edit"),
                       onPressed: () async {
                         final edited = await askToEditBook(context, book);
                         if (edited != null) {
