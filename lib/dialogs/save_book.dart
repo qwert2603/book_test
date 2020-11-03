@@ -47,8 +47,6 @@ class _CreatingBook {
   });
 
   bool isValid() {
-    print(
-        "isValid ${author.trim().isNotEmpty} ${title.trim().isNotEmpty} ${int.tryParse(year.trim()) != null}");
     return author.trim().isNotEmpty &&
         title.trim().isNotEmpty &&
         int.tryParse(year.trim()) != null;

@@ -1,3 +1,4 @@
+import 'package:book_test/data/db/books_repo_database.dart';
 import 'package:book_test/screens/book_details.dart';
 import 'package:book_test/screens/books_list.dart';
 import 'package:book_test/data/books_repo_in_memory.dart';
@@ -14,7 +15,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Provider<BooksRepo>(
-      create: (context) => BooksRepoInMemory(),
+      create: (context) => BooksRepoDatabase(),
       child: MaterialApp(
         title: 'Book Test',
         theme: ThemeData(
