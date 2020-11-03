@@ -21,6 +21,11 @@ class BooksListScreen extends StatelessWidget {
             );
           }
           final booksList = snapshot.data;
+          if(booksList.isEmpty) {
+            return Center(
+              child: Text("Список пуст"),
+            );
+          }
           return ListView.builder(
             itemBuilder: (context, i) => BookItem(
               book: booksList[i],
